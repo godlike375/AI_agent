@@ -4,7 +4,8 @@
 последствий действий learn(t) = learn(t-2)*action(t-2) -> learn(t-1)
 
 """
-
+from world import World
+from agent import Agent, Body
 
 class Simulation:
     """
@@ -12,9 +13,10 @@ class Simulation:
     многоагентный мир
     """
     # TODO: 1 экземляр симуляции работает в 1 процессе из multiprocessing
-    def __init__(self, world_cls, agent_cls):
-        self._environment = world_cls()
-        self._agent = agent_cls()
+    def __init__(self, world: World, agents: list[Agent]):
+        self._world = world
+        self._agents = agents
 
     def start(self):
-        pass
+        for agent in self._agents:
+            agent.start()
