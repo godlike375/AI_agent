@@ -5,7 +5,7 @@
 
 """
 from world import World
-from agent import Agent, Body
+from brain import Brain, Body
 
 class Simulation:
     """
@@ -13,7 +13,7 @@ class Simulation:
     многоагентный мир
     """
     # TODO: 1 экземляр симуляции работает в 1 процессе из multiprocessing
-    def __init__(self, world: World, agents: list[Agent]):
+    def __init__(self, world: World, agents: list[Brain]):
         self._world = world
         self._agents = agents
 
