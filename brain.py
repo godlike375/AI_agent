@@ -8,19 +8,20 @@ class Brain:
     Мозг по факту является только функцией преобразования входов в выходы
     """
     # TODO: мир работает в потоке из threading, агент тоже
-    def __init__(self, perception, prediction, motivation):
+    def __init__(self, inputs_count, outputs_count, Model):
         # TODO: сделать интерфейс "тело" для обмена информацией с внешним миром (потоком симуляции)
         # возможно модули могут состоять из подмодулей (что логично), у агента должен быть просто
-        # список модулей с порядком пропускания информациии через них или связями между ними
-        self.perception = perception
-        self.prediction = prediction
-        self.motivation = motivation
+        # список модулей с порядком пропускания информациии через них или связями между ними (как модель в Tensorflow)
+        self._model = Model(inputs_count, outputs_count)
+        self._inputs = []
+        self._outputs = []
 
     def start(self):
         while True:
-            self.perception.process()
+            self._model.set_inputs(self.get_inputs())
 
     def get_inputs(self):
+        # ToDo: сделать способ получения входов из мира и установку выходов
         return self._simulation.get_inputs()
 
     def set_outputs(self):

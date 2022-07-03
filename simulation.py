@@ -5,7 +5,7 @@
 
 """
 from world import World
-from brain import Brain, Body
+from brain import Brain
 
 class Simulation:
     """
