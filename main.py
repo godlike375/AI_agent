@@ -1,7 +1,6 @@
 from brain import Brain
 from world import World
 from simulation import Simulation
-from module import Perception, Prediction, Motivation
 
 if __name__ == '__main__':
     """

@@ -1,7 +1,30 @@
+import threading
+
 class Module:
     # TODO: модули должны работать в потоках
-    def __init__(self, model):
-        self.model = model
+    def __init__(self):
+        self._inputs = []
+        self._outputs = []
+        self.thread = threading.Thread(target=self.process)
+
+    def process(self):
+        pass
+
+    @property
+    def inputs(self):
+        return self._inputs
+
+    @inputs.setter
+    def inputs(self, inputs):
+        self._inputs = inputs
+
+    @property
+    def outputs(self):
+        return self._outputs
+
+    @outputs.setter
+    def outputs(self, outputs):
+        self._outputs = outputs
 
 
 class Perception(Module):

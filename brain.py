@@ -16,16 +16,24 @@ class Brain:
         self._inputs = []
         self._outputs = []
 
+    @property
+    def inputs(self):
+        return self._inputs
+
+    @inputs.setter
+    def inputs(self, inputs):
+        self._inputs = inputs
+
+    @property
+    def outputs(self):
+        return self._outputs
+
+    @outputs.setter
+    def outputs(self, outputs):
+        self._outputs = outputs
+
     def start(self):
         while True:
-            self._model.set_inputs(self.get_inputs())
-
-    def get_inputs(self):
-        # ToDo: сделать способ получения входов из мира и установку выходов
-        return self._simulation.get_inputs()
-
-    def set_outputs(self):
-        # если вариант make_action, то информация из модулей должна еще как-то обрабатываться, чтобы сделать действие
-        # если set_outputs, то обрабатывать дополнительно вроде бы не надо
-        pass
+            self._model.inputs = self.inputs
+            self._model.outputs = self.outputs
 
