@@ -6,17 +6,18 @@
 """
 from world import World
 from brain import Brain
+from base import Tickable
 
-class Simulation:
+class Simulation(Tickable):
     """
     Главный класс, запускающий симуляцию. По идее, должен поддерживаться как одноагентный, так и
     многоагентный мир
     """
     # TODO: 1 экземляр симуляции работает в 1 процессе из multiprocessing
-    def __init__(self, world: World, agents: list[Brain]):
+    def __init__(self, world: World, brains: list[Brain]):
         self._world = world
-        self._agents = agents
+        self._brains = brains
 
     def start(self):
-        for agent in self._agents:
-            agent.start()
+        for brain in self._brains:
+            brain.start()

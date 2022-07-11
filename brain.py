@@ -1,4 +1,6 @@
-class Brain:
+from base import Tickable, InputsOutputs
+
+class Brain(Tickable, InputsOutputs):
     """
     Мозг может только принимать данные через get_inputs, обрабатывать и
     и выставлять на абстрактные "мышцы" сигналы через set_outputs
@@ -8,31 +10,13 @@ class Brain:
     Мозг по факту является только функцией преобразования входов в выходы
     """
     # TODO: мир работает в потоке из threading, агент тоже
-    def __init__(self, inputs_count, outputs_count, Model):
+    def __init__(self, inputs_count, outputs_count, Model_cls):
         # TODO: сделать интерфейс "тело" для обмена информацией с внешним миром (потоком симуляции)
         # возможно модули могут состоять из подмодулей (что логично), у агента должен быть просто
         # список модулей с порядком пропускания информациии через них или связями между ними (как модель в Tensorflow)
-        self._model = Model(inputs_count, outputs_count)
-        self._inputs = []
-        self._outputs = []
+        self._model = Model_cls(inputs_count, outputs_count)
 
-    @property
-    def inputs(self):
-        return self._inputs
-
-    @inputs.setter
-    def inputs(self, inputs):
-        self._inputs = inputs
-
-    @property
-    def outputs(self):
-        return self._outputs
-
-    @outputs.setter
-    def outputs(self, outputs):
-        self._outputs = outputs
-
-    def start(self):
+    def tick(self):
         while True:
             self._model.inputs = self.inputs
             self._model.outputs = self.outputs
