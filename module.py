@@ -1,6 +1,12 @@
 import threading
 from base import InputsOutputs
 
+"""
+Общие идеи:
+обучать предсказывалку будущего можно на нарезках из истории прошлого и чуть более поздних
+последствий действий learn(t) = learn(t-2)*action(t-2) -> learn(t-1)
+"""
+
 class Module(InputsOutputs):
     # TODO: модули должны работать в потоках
     def __init__(self):
