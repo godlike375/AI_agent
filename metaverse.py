@@ -15,8 +15,13 @@ from simulation import Simulation
 
 class Metaverse():
 
-    def __init__(self, brain_cls_list, world_cls):
-        world = world_cls()
+    def __init__(self, brains_list, worlds_list):
+      if len(brains_list) > 1:
+        assert len(worlds_list) == 1
+        # симулируем много мозгов в одном типе мира
+      elif len(brains_list) == 1:
+        assert len(worlds_list) > 1
+        # симулируем много миров с одним мозгом
         self._simulations = [Simulation(world, brain_cls_list)]
 
     def run(self):
